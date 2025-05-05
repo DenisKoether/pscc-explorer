@@ -1,0 +1,5 @@
+services:
+  lens:
+    image: docker.verbis.dkfz.de/pscc/pscc-explorer:latest
+    ports:
+      - "5173:5173"

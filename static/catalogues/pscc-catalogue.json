@@ -1,0 +1,147 @@
+[
+  {
+    "key": "patient",
+    "name": "Patient",
+    "profile": "https://simplifier.net/PSCC-Test/StructureDefinition-PSCC-Patient",
+    "childCategories": [
+      {
+        "key": "gender",
+        "name": "Gender",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "http://hl7.org/fhir/administrative-gender",
+        "criteria": [
+          { "key": "male", "name": "Male" },
+          { "key": "female", "name": "Female" },
+          { "key": "other", "name": "Other" },
+          { "key": "unknown", "name": "Unknown" }
+        ]
+      },
+      {
+        "key": "birth_date",
+        "name": "Birth Date",
+        "fieldType": "date",
+        "type": "BETWEEN"
+      },
+      {
+        "key": "vital_status",
+        "name": "Vital Status",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "https://simplifier.net/PSCC-Test/ValueSet/Vitalstatus",
+        "criteria": [
+          { "key": "alive", "name": "Alive" },
+          { "key": "deceased", "name": "Deceased" }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "primary_diagnosis",
+    "name": "Primary Diagnosis",
+    "profile": "https://simplifier.net/pscc-test/primarydiagnosis",
+    "childCategories": [
+      {
+        "key": "icd10_code",
+        "name": "ICD-10 Code",
+        "fieldType": "autocomplete",
+        "type": "EQUALS",
+        "system": "http://hl7.org/fhir/sid/icd-10",
+        "criteria": [
+          { "key": "C50.919", "name": "C50.919 (Breast)" },
+          { "key": "C34.90", "name": "C34.90 (Lung)" },
+          { "key": "C61", "name": "C61 (Prostate)" }
+        ]
+      },
+      {
+        "key": "age_at_diagnosis",
+        "name": "Age at First Diagnosis",
+        "fieldType": "number",
+        "type": "BETWEEN",
+        "min": 0,
+        "max": 150
+      }
+    ]
+  },
+  {
+    "key": "tnm_staging",
+    "name": "TNM Staging",
+    "profile": "https://simplifier.net/PSCC-Test/TNMStage",
+    "childCategories": [
+      {
+        "key": "stage",
+        "name": "TNM Classification",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "https://simplifier.net/pscc-test/tnmstagevs",
+        "criteria": [
+          { "key": "T1N0M0", "name": "T1N0M0" },
+          { "key": "T2N1M0", "name": "T2N1M0" },
+          { "key": "T3N2M1", "name": "T3N2M1" }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "systemic_therapy",
+    "name": "Systemic Therapy",
+    "profile": "https://simplifier.net/PSCC-Test/StructureDefinition/SystemicTherapy",
+    "childCategories": [
+      {
+        "key": "therapy_type",
+        "name": "Therapy Type",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "https://simplifier.net/PSCC-Test/ValueSet/TreatmentType",
+        "criteria": [
+          { "key": "chemotherapy", "name": "Chemotherapy" },
+          { "key": "radiotherapy", "name": "Radiotherapy" },
+          { "key": "immunotherapy", "name": "Immunotherapy" }
+        ]
+      },
+      {
+        "key": "treatment_period",
+        "name": "Treatment Period",
+        "fieldType": "date-range",
+        "type": "BETWEEN"
+      }
+    ]
+  },
+  {
+    "key": "histopathology",
+    "name": "Histopathology",
+    "profile": "https://simplifier.net/PSCC-Test/StructureDefinition/Histologie",
+    "childCategories": [
+      {
+        "key": "icd_o3_code",
+        "name": "ICD-O-3 Code",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "http://terminology.hl7.org/ValueSet/icd-o-3",
+        "criteria": [
+          { "key": "8140/3", "name": "8140/3 (Adenocarcinoma)" },
+          { "key": "8070/3", "name": "8070/3 (Squamous cell carcinoma)" }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "clinical_progress",
+    "name": "Clinical Progress",
+    "profile": "https://simplifier.net/PSCC-Test/StructureDefinition/Progress",
+    "childCategories": [
+      {
+        "key": "tumor_event",
+        "name": "Tumor Event",
+        "fieldType": "single-select",
+        "type": "EQUALS",
+        "system": "https://simplifier.net/PSCC-Test/ValueSet/TumorEventType",
+        "criteria": [
+          { "key": "primary", "name": "Primary" },
+          { "key": "recurrence", "name": "Recurrence" },
+          { "key": "metastasis", "name": "Metastasis" }
+        ]
+      }
+    ]
+  }
+]

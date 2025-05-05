@@ -6,11 +6,12 @@
 	} from './config/environment';
 	import type { LensDataPasser } from '@samply/lens';
 	import { catalogueText, fetchData } from './services/catalogue.service';
+	import { browser } from '$app/environment';
+	import { requestBackend } from './services/backends/backend.service';
 
 	let catalogueopen = false;
-	const catalogueUrl = 'catalogues/catalogue-example.json';
+	const catalogueUrl = 'catalogues/pscc-catalogue.json';
 	const optionsFilePath = 'config/options.json';
-
 
 	const jsonPromises: Promise<{
 		catalogueJSON: string;
@@ -18,6 +19,18 @@
 	}> = fetchData(catalogueUrl, optionsFilePath);
 
 	let dataPasser: LensDataPasser;
+
+	if (browser) {
+		window.addEventListener('emit-lens-query', (e) => {
+			if (!dataPasser) return;
+
+			const event = e as CustomEvent;
+			const { ast, updateResponse, abortController } = event.detail;
+			const criteria: string[] = dataPasser.getCriteriaAPI('diagnosis');
+
+			requestBackend(ast, updateResponse, abortController, measures, criteria);
+		});
+	}
 
 	/**
 	 * The following functions are the API to the library stores (state)
@@ -55,7 +68,7 @@
 	<div>
 		<!-- Add logo here -->
 	</div>
-	<h1>Lens2 Example (Title Here)</h1>
+	<h1>PSCC EXPLORER</h1>
 	<div>
 		<!-- Add logo here -->
 	</div>
