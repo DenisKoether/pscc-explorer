@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	server: {
-		allowedHosts: ['bridgehead.dev.dzif.de']
+		allowedHosts: ['demo.pscc.samply.de']
 	},
 	plugins: [sveltekit()],
 	test: {
