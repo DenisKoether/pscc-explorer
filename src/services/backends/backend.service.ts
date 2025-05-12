@@ -31,7 +31,8 @@ export const requestBackend = (
 
 	let backendUrl: string = '';
 
-	backendUrl = 'http://localhost:8082/fhir';
+	//backendUrl = 'https://demo.pscc.samply.de/pscc-localdatamanagement/fhir';
+	backendUrl = 'http://localhost:8082/fhir'
 
 	const backend = new Blaze(new URL(backendUrl), 'DKTK', '');
 

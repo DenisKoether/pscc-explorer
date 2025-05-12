@@ -9,6 +9,12 @@
 	import { browser } from '$app/environment';
 	import { requestBackend } from './services/backends/backend.service';
 
+	// Import Lens CSS and JS bundles
+	import '@samply/lens/style.css';
+	import './app.css';
+
+	import '@samply/lens';
+
 	let catalogueopen = false;
 	const catalogueUrl = 'catalogues/pscc-catalogue.json';
 	const optionsFilePath = 'config/options.json';
@@ -184,7 +190,7 @@
 <!-- here it waits on all promises to resolve and fills in the parameters -->
 {#await jsonPromises}
 	Loading data...
-{:then { optionsJSON, catalogueJSON }}
+{:then {optionsJSON, catalogueJSON }}
 	<lens-options {catalogueJSON} {optionsJSON} {measures}></lens-options>
 {:catch someError}
 	System error: {someError.message}
